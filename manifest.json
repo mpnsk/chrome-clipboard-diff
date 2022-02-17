@@ -9,5 +9,16 @@
   "permissions": [
     "clipboardRead",
     "contextMenus"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "content-script.js"
+      ],
+      "run_at": "document_idle"
+    }
   ]
 }
