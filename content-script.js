@@ -7,6 +7,13 @@ chrome.runtime.onMessage.addListener(
             clipText => {
                 console.log('selected', request.selected)
                 console.log('clipText', clipText)
+                let selection = window.getSelection().getRangeAt(0);
+                let selectedText = selection.extractContents();
+                let span = document.createElement("span");
+                span.style.color = "#ff8181"
+                span.appendChild(selectedText)
+                selection.insertNode(span)
+
             }
         )
     }
