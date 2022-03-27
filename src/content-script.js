@@ -1,3 +1,5 @@
+import {Diff} from 'diff'
+
 console.log('hello world!')
 
 chrome.runtime.onMessage.addListener(
@@ -14,6 +16,16 @@ chrome.runtime.onMessage.addListener(
                 span.appendChild(selectedText)
                 selection.insertNode(span)
 
+                const diff = Diff.diffChars(request.selected, clipText);
+
+                diff.forEach((part) => {
+                    // green for additions, red for deletions
+                    // grey for common parts
+                    // const color = part.added ? 'green' :
+                    //     part.removed ? 'red' : 'grey';
+                    // process.stderr.write(part.value[color]);
+                    console.log('part(' + part.added + ')', part)
+                });
             }
         )
     }
